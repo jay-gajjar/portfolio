@@ -1,0 +1,45 @@
+.skillsContainer {
+  text-align: center;
+  font-size: 0.7rem;
+  @media (max-width: 768px) {
+    background-color: transparent;
+    padding: 0;
+  }
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .itemContainer {
+    cursor: default;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+    min-width: 80px;
+    background-color: var(--mat-sys-surface-variant);
+    @media (max-width: 500px) {
+      max-width: 100px;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+}

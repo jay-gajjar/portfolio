@@ -1,0 +1,51 @@
+<div class="sidenav-container-wrap">
+  <mat-sidenav-container class="sidenav-container" autosize autoFocus>
+    <mat-sidenav
+      #sidenav
+      class="sidenav"
+      fixedInViewport
+      [attr.role]="isMobileScreen() ? 'dialog' : 'navigation'"
+      [mode]="isMobileScreen() ? 'over' : 'side'"
+      [opened]="isMobileScreen() === false"
+    >
+      <!-- <div class="sidenav-header">
+        <mat-icon class="sidenav-toggle-icon" (click)="toggleSidenav()">notes</mat-icon>
+      </div> -->
+      <div class="sidenav-links">
+        @for (item of navItems; track item.id) {
+        <div class="sidenav-item">
+          <div
+            class="sidenav-link"
+            [class.active]="activeSection() === item.id"
+            (click)="scrollToId(item.id)"
+          >
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span class="nav-item-name">{{item.label}}</span>
+          </div>
+        </div>
+        }
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content #content class="sidenav-content">
+      @if (isMobileScreen()) {
+      <mat-toolbar class="mobile-toolbar">
+        <mat-icon (click)="toggleSidenav()">notes</mat-icon>
+        <span class="sidenav-title">Resume Optimizer</span>
+        <div class="spacer"></div>
+      </mat-toolbar>
+      }
+      <main class="sidenav-page-content">
+        <div class="app-content">
+          <div class="theme-toggle" (click)="toggleDark()">
+            <mat-icon>{{mode() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
+          </div>
+          <app-sections
+            (setActiveSection)="activeSection.set($event)"
+            (initObserver)="setObserver($event)"
+          />
+        </div>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

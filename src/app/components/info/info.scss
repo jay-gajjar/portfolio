@@ -1,0 +1,89 @@
+.info {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 990px) {
+    display: block;
+    padding: 80px 0;
+    height: auto;
+
+    .heroDescription {
+      text-align: center;
+      margin-top: 50px;
+
+      .socialsResume {
+        justify-content: center;
+      }
+    }
+  }
+
+  .heroImageContainer {
+    flex: 0 0 50%;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+
+    img {
+      border-radius: 50%;
+      margin: 0 auto;
+      width: 350px;
+      height: 350px;
+      box-shadow:
+        12px 0 var(--mat-sys-primary),
+        24px 0 rgb(223, 228, 237),
+        36px 0 rgb(237 238 241);
+
+      @media (max-width: 990px) {
+        width: 230px;
+        height: 230px;
+        box-shadow:
+          8px 0 rgb(185, 203, 233),
+          16px 0 rgb(223, 228, 237),
+          24px 0 rgb(237 238 241);
+      }
+      @media (max-width: 320px) {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .heroDescription {
+    flex: 0 0 50%;
+    padding: 0 15px;
+    width: 100%;
+
+    .greeting {
+      letter-spacing: 1px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin: 24px 0;
+    }
+
+    .smallBio {
+      min-width: 250px;
+      line-height: 1.4;
+
+      span {
+        font-size: 1.1rem;
+      }
+    }
+
+    .socialsResume {
+      display: flex;
+      margin-top: 30px;
+      @media (max-width: 400px) {
+        display: block;
+      }
+    }
+  }
+}

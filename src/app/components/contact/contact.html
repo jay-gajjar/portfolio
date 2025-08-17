@@ -1,0 +1,111 @@
+<section class="contactSection" id="contact">
+  <div class="sectionHead">
+    <span>SAY HELLO</span>
+    <h2>CONTACT</h2>
+  </div>
+  <mat-card appearance="outlined" class="contactContainer sectionContainer">
+    <div class="get-in-touch">
+      <div class="title">Get in Touch</div>
+      <div class="contactTypes">
+        <div class="socialsList">
+          <a
+            href="https://www.linkedin.com/in/gajjar-jay/"
+            target="_blank"
+            matButton="outlined"
+            rel="noopener noreferrer"
+          >
+            <mat-icon svgIcon="linkedIn" />
+            <!-- <img
+                class="menu-icon"
+                src="assets/icons/linkedIn.svg"
+                alt="Link to Jay's LinkedIn page."
+              /> -->
+          </a>
+
+          <a
+            matButton="outlined"
+            href="https://github.com/jay-gajjar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <mat-icon svgIcon="github" />
+            <!-- <img
+                class="menu-icon"
+                class="menu-icon"
+                src="assets/icons/github.svg"
+                alt="Link to Jay's GitHub page."
+              /> -->
+          </a>
+
+          <a
+            matButton="outlined"
+            href="mailto:gajjarjay.1711@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <mat-icon svgIcon="email" />
+            <!-- <img class="menu-icon" src="assets/icons/email.svg" alt="email" /> -->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="contactFormContainer">
+      <div class="title">Contact Form</div>
+      <form id="contactForm" (ngSubmit)="sendEmail(emailForm.value)" [formGroup]="emailForm">
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Your Name</mat-label>
+            <input type="text" id="nameInput" name="nameInput" matInput formControlName="name" />
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              id="emailInput"
+              name="emailInput"
+              matInput
+              formControlName="email"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <input
+              type="text"
+              id="subjectInput"
+              name="subjectInput"
+              matInput
+              formControlName="subject"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-field full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Your Message</mat-label>
+            <textarea
+              type="text"
+              id="messageInput"
+              name="messageInput"
+              matInput
+              formControlName="message"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+      <button
+        color="primary"
+        matButton="filled"
+        [disabled]="isLoading || emailForm.invalid"
+        type="submit"
+        class="formSend"
+        form="contactForm"
+        rel="noopener noreferrer"
+      >
+        {{ isLoading ? 'Sending...' : 'Send' }}
+      </button>
+    </div>
+  </mat-card>
+</section>

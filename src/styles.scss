@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+:root {
+  --body-background-color: var(--mat-sys-surface-container);
+  --sidenav-width: 12rem;
+  --sidenav-collapsed-width: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--body-background-color);
+}
+
+html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: 'Poppins',
+      density: 0,
+    )
+  );
+}
+
+body {
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+}
+
+.theme-dark {
+  color-scheme: dark;
+}
+
+.mat-mdc-menu-panel {
+  --mat-menu-container-shape: 8px;
+}
+
+.mat-mdc-menu-content {
+  margin: 0 5px !important;
+  .mat-mdc-menu-item {
+    min-height: 30px;
+    border-radius: 10px;
+  }
+}
