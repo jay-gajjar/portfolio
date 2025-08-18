@@ -26,7 +26,7 @@ html {
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
+        primary: mat.$cyan-palette,
         tertiary: mat.$blue-palette,
       ),
       typography: 'Poppins',
@@ -39,9 +39,14 @@ body {
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
   margin: 0;
+  @include mat.button-overrides(
+    (
+      filled-container-shape: 12px,
+    )
+  );
 }
 
-.theme-dark {
+body.theme-dark {
   color-scheme: dark;
 }
 

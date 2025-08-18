@@ -97,6 +97,7 @@
         }
         &.active {
           background: var(--body-background-color);
+          color: var(--mat-sys-primary);
         }
 
         mat-icon {

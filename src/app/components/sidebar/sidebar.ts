@@ -34,12 +34,12 @@ export class Sidebar {
     },
     {
       id: 'about',
-      icon: 'info',
+      icon: 'person',
       label: 'About',
     },
     {
       id: 'skills',
-      icon: 'star',
+      icon: 'code',
       label: 'Skills',
     },
     {
@@ -49,7 +49,7 @@ export class Sidebar {
     },
     {
       id: 'projects-list',
-      icon: 'folder_code',
+      icon: 'integration_instructionssdk',
       label: 'Projects',
     },
     {
@@ -71,9 +71,9 @@ export class Sidebar {
   setDefaultTheme() {
     this.mode.set(this.getThemeColor());
     if (this.mode() === 'dark') {
-      const html = this.document.querySelector('html');
-      if (html) {
-        html.classList.add('theme-dark');
+      const body = this.document.querySelector('body');
+      if (body) {
+        body.classList.add('theme-dark');
       }
     }
   }
@@ -105,9 +105,9 @@ export class Sidebar {
 
   toggleDark() {
     this.mode.set(this.mode() === 'dark' ? 'light' : 'dark');
-    const html = this.document.querySelector('html');
-    if (html) {
-      html.classList.toggle('theme-dark');
+    const body = this.document.querySelector('body');
+    if (body) {
+      body.classList.toggle('theme-dark');
     }
   }
 
