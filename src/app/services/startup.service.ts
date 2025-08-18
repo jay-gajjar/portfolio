@@ -13,15 +13,15 @@ export class StartupService {
   icons = [
     {
       name: 'github',
-      url: '/images/github.svg',
+      url: 'images/github.svg',
     },
     {
       name: 'linkedIn',
-      url: '/images/linkedIn.svg',
+      url: 'images/linkedIn.svg',
     },
     {
       name: 'email',
-      url: '/images/email.svg',
+      url: 'images/email.svg',
     },
   ];
 
