@@ -24,6 +24,7 @@
     overflow-x: hidden;
     border-width: 0 !important;
     transition-property: transform, width !important;
+    padding: 20px 0;
 
     @media (max-width: 1024px) {
       --mat-sidenav-container-width: var(--sidenav-width);
@@ -52,6 +53,10 @@
       gap: 8px;
       overflow-y: auto;
       padding: 0 8px;
+
+      @media (max-width: 1024px) {
+        justify-content: flex-start;
+      }
 
       // Custom scrollbar
       &::-webkit-scrollbar {

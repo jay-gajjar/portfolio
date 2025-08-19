@@ -28,7 +28,7 @@ export class Sections implements AfterViewInit {
           }
         });
       },
-      { threshold: 0.4 } // 60% must be visible
+      { threshold: 0.2 }
     );
 
     this.initObserver.emit(this.observer);
