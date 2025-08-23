@@ -44,6 +44,15 @@ body {
       filled-container-shape: 12px,
     )
   );
+  @include mat.form-field-overrides(
+    (
+      container-height: 40px,
+      container-vertical-padding: 12px,
+      container-text-line-height: 20px,
+      outlined-label-text-size: 14px,
+      container-text-size: 14px,
+    )
+  );
 }
 
 body.theme-dark {
