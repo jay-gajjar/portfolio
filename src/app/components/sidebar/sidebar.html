@@ -37,7 +37,11 @@
       }
       <main class="sidenav-page-content">
         <div class="app-content">
-          <div class="theme-toggle" (click)="toggleDark()">
+          <div
+            [matTooltip]="'Switch to ' + (mode() === 'dark' ? 'Light' : 'Dark') + ' mode'"
+            class="theme-toggle"
+            (click)="toggleDark()"
+          >
             <mat-icon>{{mode() === 'dark' ? 'light_mode' : 'dark_mode'}}</mat-icon>
           </div>
           <app-sections

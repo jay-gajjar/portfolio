@@ -6,12 +6,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Subscription } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 import { Sections } from '../sections/sections';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MOBILE_MEDIAQUERY = 'screen and (max-width: 1024px)';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MatSidenavModule, MatIconModule, MatToolbarModule, MatDividerModule, Sections],
+  imports: [
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatTooltipModule,
+    Sections,
+  ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
