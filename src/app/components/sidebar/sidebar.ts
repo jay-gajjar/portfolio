@@ -1,4 +1,4 @@
-import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, DOCUMENT, inject, signal, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
@@ -27,10 +27,9 @@ export class Sidebar {
   @ViewChild('content', { static: true }) content!: MatSidenavContent;
   @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
   private breakpointObserver = inject(BreakpointObserver);
-  private readonly mediaMatcher = inject(MediaMatcher);
   layoutChangesSubscription = Subscription.EMPTY;
   activeSection = signal<string | null>(null);
-  mode = signal<'light' | 'dark'>('light');
+  mode = signal<'light' | 'dark'>('dark');
   isMobileScreen = signal<boolean>(false);
   private document = inject(DOCUMENT);
 
@@ -68,22 +67,11 @@ export class Sidebar {
   ];
 
   constructor() {
-    this.setDefaultTheme();
     this.layoutChangesSubscription = this.breakpointObserver
       .observe([MOBILE_MEDIAQUERY])
       .subscribe((state) => {
         this.isMobileScreen.set(!!state.breakpoints[MOBILE_MEDIAQUERY]);
       });
-  }
-
-  setDefaultTheme() {
-    this.mode.set(this.getThemeColor());
-    if (this.mode() === 'dark') {
-      const body = this.document.querySelector('body');
-      if (body) {
-        body.classList.add('theme-dark');
-      }
-    }
   }
 
   scrollToId(id: string) {
@@ -113,18 +101,10 @@ export class Sidebar {
 
   toggleDark() {
     this.mode.set(this.mode() === 'dark' ? 'light' : 'dark');
+    localStorage.setItem('theme', this.mode());
     const body = this.document.querySelector('body');
     if (body) {
       body.classList.toggle('theme-dark');
-    }
-  }
-
-  getThemeColor() {
-    if (this.mediaMatcher.matchMedia('(prefers-color-scheme)').media !== 'not all') {
-      const isSystemDark = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').matches;
-      return isSystemDark ? 'dark' : 'light';
-    } else {
-      return 'light';
     }
   }
 }

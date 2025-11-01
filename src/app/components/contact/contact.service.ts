@@ -1,15 +1,15 @@
-import { DOCUMENT, Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root' // Makes the service available application-wide
 })
-export class StartupService {
+export class ContactService {
+
   private matIconRegistry = inject(MatIconRegistry);
   private domSanitizer = inject(DomSanitizer);
-  private document = inject(DOCUMENT);
-
+  isIconsLoaded = false;
   icons = [
     {
       name: 'github',
@@ -33,12 +33,7 @@ export class StartupService {
           this.domSanitizer.bypassSecurityTrustResourceUrl(icon.url)
         );
       });
-      this.hideLoader();
       resolve();
     });
-  }
-
-  hideLoader() {
-    this.document.getElementById('app-loader')?.classList.add('hide');
   }
 }

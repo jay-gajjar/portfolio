@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ContactService } from './contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -30,6 +31,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  private contactService = inject(ContactService);
   private httpClient = inject(HttpClient);
   private _snackBar = inject(MatSnackBar);
   private fb = inject(FormBuilder);
@@ -39,14 +41,26 @@ export class Contact {
   showSnackBar = false;
   message = '';
   snackbarTimeOut: any;
+  isLoaded = false;
 
   constructor() {
+    this.loadIcons();
     this.emailForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', Validators.required],
     });
+  }
+
+  loadIcons() {
+    if (!this.contactService.isIconsLoaded) {
+      this.contactService.load().then(() => {
+        this.isLoaded = true;
+      });
+    } else {
+      this.isLoaded = true;
+    }
   }
 
   sendEmail(formData: any) {

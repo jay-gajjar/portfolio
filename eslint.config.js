@@ -1,11 +1,11 @@
 // @ts-check
-const eslint = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
+const eslint = require("@eslint/js");
+const tseslint = require("typescript-eslint");
+const angular = require("angular-eslint");
 
 module.exports = tseslint.config(
   {
-    files: ['**/*.ts'],
+    files: ["**/*.ts"],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -14,35 +14,37 @@ module.exports = tseslint.config(
     ],
     processor: angular.processInlineTemplates,
     rules: {
-      'max-len': [
-        'warn',
+      "@angular-eslint/directive-selector": [
+        "error",
         {
-          code: 100,
-          ignoreComments: true,
-          ignoreStrings: true,
-          ignoreTemplateLiterals: true,
+          type: "attribute",
+          prefix: "app",
+          style: "camelCase",
         },
       ],
-      'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
-      'quote-props': ['warn', 'consistent-as-needed'],
-      'quotes': ['warn', 'single', { allowTemplateLiterals: true }],
-      'semi': ['warn', 'always'],
-      '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-expressions': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@angular-eslint/component-class-suffix': 'off',
-      '@angular-eslint/directive-class-suffix': 'off',
-      '@angular-eslint/no-empty-lifecycle-method': 'off',
+      "@angular-eslint/component-selector": [
+        "error",
+        {
+          type: "element",
+          prefix: "app",
+          style: "kebab-case",
+        },
+      ],
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-function": "warn",
+      "@typescript-eslint/no-unused-expressions": "warn",
+      "@angular-eslint/component-class-suffix": "off",
+      "@angular-eslint/directive-class-suffix": "off",
+      "@angular-eslint/no-empty-lifecycle-method": "warn",
+      "@typescript-eslint/no-unused-vars": "error",
     },
   },
   {
-    files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-    rules: {
-      '@angular-eslint/template/prefer-self-closing-tags': 'warn',
-      '@angular-eslint/template/click-events-have-key-events': 'off',
-      '@angular-eslint/template/interactive-supports-focus': 'off'
-    },
+    files: ["**/*.html"],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility,
+    ],
+    rules: {},
   }
 );
