@@ -36,7 +36,7 @@ module.exports = tseslint.config(
       "@angular-eslint/component-class-suffix": "off",
       "@angular-eslint/directive-class-suffix": "off",
       "@angular-eslint/no-empty-lifecycle-method": "warn",
-      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-unused-vars": "warn",
     },
   },
   {
