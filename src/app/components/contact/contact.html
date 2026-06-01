@@ -86,13 +86,13 @@
       <button
         color="primary"
         matButton="filled"
-        [disabled]="isLoading || emailForm.invalid"
+        [disabled]="isLoading() || emailForm.invalid"
         type="submit"
         class="formSend"
         form="contactForm"
         rel="noopener noreferrer"
       >
-        {{ isLoading ? 'Sending...' : 'Send' }}
+        {{ isLoading() ? 'Sending...' : 'Send' }}
       </button>
     </div>
   </mat-card>

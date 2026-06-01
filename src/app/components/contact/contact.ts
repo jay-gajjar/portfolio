@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -33,12 +33,12 @@ export class Contact {
   private httpClient = inject(HttpClient);
   private _snackBar = inject(MatSnackBar);
   private fb = inject(FormBuilder);
-  secretKey = 'xrgwzgwe';
-  isLoading = false;
+  secretKey = signal('xrgwzgwe');
+  isLoading = signal(false);
   emailForm: FormGroup;
-  showSnackBar = false;
-  message = '';
-  snackbarTimeOut: any;
+  showSnackBar = signal(false);
+  message = signal('');
+  snackbarTimeOut = signal<any>(undefined);
 
   constructor() {
     this.emailForm = this.fb.group({
@@ -50,20 +50,20 @@ export class Contact {
   }
 
   sendEmail(formData: any) {
-    if (this.isLoading) {
+    if (this.isLoading()) {
       return;
     }
     if (this.emailForm.invalid) {
       this.displaySnackBar('Please fill required fields & Valid details...');
       return;
     }
-    this.isLoading = true;
+    this.isLoading.set(true);
     //Set the url with your secretKey from formspree.io
-    const url = 'https://formspree.io/f/' + this.secretKey;
+    const url = 'https://formspree.io/f/' + this.secretKey();
     //Set Headers
     const httpOptions = {
       headers: new HttpHeaders({
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     };
@@ -71,11 +71,12 @@ export class Contact {
     let errorMessage = '';
     this.httpClient.post(url, data, httpOptions).subscribe({
       next: () => {
-        this.isLoading = false;
+        this.emailForm.reset();
+        this.isLoading.set(false);
         this.displaySnackBar('Thank you for filling out your information!');
       },
       error: (error) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
         errorMessage = error.message;
         console.log('error!', errorMessage);
       },
