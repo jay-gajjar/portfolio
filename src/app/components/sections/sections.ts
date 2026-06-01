@@ -28,7 +28,10 @@ export class Sections implements AfterViewInit {
           }
         });
       },
-      { threshold: 0.2 }
+      {
+        rootMargin: '-30% 0px -30% 0px',
+        threshold: 0.05,
+      }
     );
 
     this.initObserver.emit(this.observer);

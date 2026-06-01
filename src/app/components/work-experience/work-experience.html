@@ -4,22 +4,31 @@
     <h2>WORK EXPERIENCE</h2>
   </div>
 
-  <mat-card appearance="outlined" class="worksContainer sectionContainer">
-    @for (experience of experiences; track experience.company; let last = $last) {
-    <article class="work-box">
-      <div class="work-describe-container">
-        <div class="work-company">{{ experience.company }}</div>
-        <div class="work-duration">{{ experience.duration }}</div>
-        <ul>
+  <div class="timeline-container">
+    @for (experience of experiences; track experience.company) {
+    <article class="timeline-item">
+      <!-- Dot on the timeline -->
+      <div class="timeline-dot-wrapper">
+        <div class="timeline-dot"></div>
+      </div>
+
+      <!-- Experience details in glass card -->
+      <div class="timeline-card">
+        <div class="experience-header">
+          <h3 class="work-company">{{ experience.company }}</h3>
+          <span class="work-duration">{{ experience.duration }}</span>
+        </div>
+
+        <ul class="responsibility-list">
           @for (responsibility of experience.responsibilities; track responsibility) {
-          <li>{{ responsibility }}</li>
+          <li class="responsibility-item">
+            <mat-icon class="check-icon">verified</mat-icon>
+            <span class="responsibility-text">{{ responsibility }}</span>
+          </li>
           }
         </ul>
       </div>
     </article>
-
-    @if (!last) {
-    <mat-divider />
-    } }
-  </mat-card>
+    }
+  </div>
 </section>

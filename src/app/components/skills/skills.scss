@@ -1,59 +1,80 @@
 .skillsContainer {
   text-align: center;
-  font-size: 0.7rem;
+  padding: 40px !important;
+  background: var(--surface-card) !important;
+  backdrop-filter: blur(var(--glass-blur)) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+  border: 1px solid var(--border-card) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-radius: 24px !important;
+
   @media (max-width: 768px) {
-    background-color: transparent;
-    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
   }
 }
 
 .skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  grid-column-gap: 50px;
-  grid-row-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 24px;
+
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px;
+    gap: 16px;
   }
   @media (max-width: 500px) {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   }
 
   .itemContainer {
-    padding: 10px;
-    border-radius: 15px;
-    width: 100%;
-    min-width: 80px;
-    background-color: var(--mat-sys-surface-variant);
-    border: 1px solid transparent;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease,
-      background-color 0.3s ease,
-      border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    border-radius: 16px;
+    background: var(--surface-card);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    will-change: transform, box-shadow;
 
     &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      background-color: var(--mat-sys-surface);
-      border: 1px solid var(--mat-sys-primary);
-    }
+      box-shadow: 0 10px 20px rgba(var(--primary-accent-rgb), 0.15);
+      border-color: var(--primary-accent);
+      background: var(--surface-card-hover);
 
-    @media (max-width: 500px) {
-      max-width: 100px;
-    }
-
-    p {
-      margin-top: 5px;
+      img {
+        transform: scale(1.1) rotate(5deg);
+      }
+      p {
+        color: var(--primary-accent);
+      }
     }
 
     img {
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+      letter-spacing: 0.2px;
     }
   }
 }

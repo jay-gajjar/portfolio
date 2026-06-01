@@ -2,9 +2,33 @@
 @use '@angular/material' as mat;
 
 :root {
-  --body-background-color: var(--mat-sys-surface-container);
-  --sidenav-width: 12rem;
-  --sidenav-collapsed-width: 4rem;
+  --sidenav-width: 12.5rem;
+  --sidenav-collapsed-width: 4.5rem;
+
+  /* Premium Light Mode Palette */
+  --bg-app: #f8fafc;
+  --bg-mesh-1: rgba(99, 102, 241, 0.04);
+  --bg-mesh-2: rgba(20, 184, 166, 0.04);
+
+  --surface-card: rgba(255, 255, 255, 0.65);
+  --surface-card-hover: rgba(255, 255, 255, 0.9);
+  --border-card: rgba(226, 232, 240, 0.7);
+  --border-glow: rgba(99, 102, 241, 0.15);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --primary-accent: #4f46e5;
+  --primary-accent-rgb: 79, 70, 229;
+  --secondary-accent: #0d9488;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 12px 24px -4px rgba(99, 102, 241, 0.06), 0 4px 12px -2px rgba(99, 102, 241, 0.04);
+  --glass-blur: 16px;
+
+  --body-background-color: var(--bg-app);
 }
 
 * {
@@ -17,8 +41,16 @@ html,
 body {
   position: relative;
   height: 100%;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--body-background-color);
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--text-primary);
+  scroll-behavior: smooth;
 }
 
 html {
@@ -26,38 +58,116 @@ html {
   @include mat.theme(
     (
       color: (
-        primary: mat.$cyan-palette,
-        tertiary: mat.$blue-palette,
+        primary: mat.$blue-palette,
+        tertiary: mat.$cyan-palette,
       ),
-      typography: 'Poppins',
-      density: 0,
+      typography: 'Inter',
+      density: -1,
     )
   );
 }
 
 body {
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+  color: var(--text-primary);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
   @include mat.button-overrides(
     (
-      filled-container-shape: 12px,
+      filled-container-shape: 9999px,
+      outlined-container-shape: 9999px,
     )
   );
   @include mat.form-field-overrides(
     (
-      container-height: 40px,
+      container-height: 48px,
       container-vertical-padding: 12px,
-      container-text-line-height: 20px,
+      container-text-line-height: 24px,
       outlined-label-text-size: 14px,
       container-text-size: 14px,
+      outlined-container-shape: 12px,
     )
   );
 }
 
 body.theme-dark {
   color-scheme: dark;
+
+  /* Premium Dark Mode Palette */
+  --bg-app: #030712;
+  --bg-mesh-1: rgba(99, 102, 241, 0.12);
+  --bg-mesh-2: rgba(20, 184, 166, 0.08);
+
+  --surface-card: rgba(17, 24, 39, 0.55);
+  --surface-card-hover: rgba(31, 41, 55, 0.8);
+  --border-card: rgba(255, 255, 255, 0.05);
+  --border-glow: rgba(99, 102, 241, 0.35);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --primary-accent: #818cf8;
+  --primary-accent-rgb: 129, 140, 248;
+  --secondary-accent: #2dd4bf;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.3), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 32px -6px rgba(0, 0, 0, 0.55), 0 8px 16px -4px rgba(99, 102, 241, 0.12);
+
+  --body-background-color: var(--bg-app);
+}
+
+/* Glassmorphism Cards Utility */
+.glass-card {
+  background: var(--surface-card);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border-card) !important;
+  box-shadow: var(--shadow-md);
+  border-radius: 24px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+
+  &:hover {
+    background: var(--surface-card-hover);
+    border-color: var(--border-glow) !important;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+}
+
+/* Typography Gradient Utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Global Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rotate-mesh {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 .mat-mdc-menu-panel {
@@ -69,5 +179,46 @@ body.theme-dark {
   .mat-mdc-menu-item {
     min-height: 30px;
     border-radius: 10px;
+  }
+}
+
+/* Mesh Background styles */
+.mesh-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--bg-app);
+  transition: background-color 0.5s ease;
+
+  .mesh-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.85;
+    mix-blend-mode: normal;
+    will-change: transform;
+  }
+
+  .orb-1 {
+    top: -20%;
+    right: -10%;
+    width: min(80vw, 800px);
+    height: min(80vw, 800px);
+    background: radial-gradient(circle, var(--bg-mesh-1) 0%, transparent 70%);
+    animation: rotate-mesh 35s infinite alternate ease-in-out;
+  }
+
+  .orb-2 {
+    bottom: -20%;
+    left: -10%;
+    width: min(70vw, 700px);
+    height: min(70vw, 700px);
+    background: radial-gradient(circle, var(--bg-mesh-2) 0%, transparent 70%);
+    animation: rotate-mesh 30s infinite alternate-reverse ease-in-out;
   }
 }

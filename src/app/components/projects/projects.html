@@ -4,36 +4,45 @@
     <h2>PROJECTS <sub>that i worked on</sub></h2>
   </div>
 
-  <mat-card appearance="outlined" class="worksContainer sectionContainer">
-    @for (project of projects; track project.title; let last = $last) {
-    <article class="work-box">
-      <div class="work-describe-container">
-        <div class="title">{{ project.title }}</div>
-        <div class="info">{{ project.info }}</div>
-        <div class="details">
-          <div class="detail-item">Contribution:</div>
-          <ul>
-            @for (contribution of project.contributions; track contribution) {
-            <li>{{ contribution }}</li>
-            }
-          </ul>
-        </div>
-        <div class="details">
-          <div class="detail-item">
-            <span>Tech Stack:</span>
-            <div class="tech-stack">{{ project.techStack }}</div>
-          </div>
-          @if (project.architecture) {
-          <div class="detail-item">
-            <span>Architecture:</span>
-            <div class="tech-stack">{{ project.architecture }}</div>
-          </div>
-          }
+  <div class="projects-grid">
+    @for (project of projects; track project.title) {
+    <article class="project-card">
+      <div class="card-header">
+        <div class="title-wrap">
+          <mat-icon class="folder-icon">folder_open</mat-icon>
+          <h3 class="title">{{ project.title }}</h3>
         </div>
       </div>
+
+      <p class="info">{{ project.info }}</p>
+
+      <div class="details-section">
+        <h4 class="details-title">Key Contributions</h4>
+        <ul class="contributions-list">
+          @for (contribution of project.contributions; track contribution) {
+          <li class="contribution-item">
+            <mat-icon class="bullet-icon">arrow_forward_ios</mat-icon>
+            <span class="contribution-text">{{ contribution }}</span>
+          </li>
+          }
+        </ul>
+      </div>
+
+      <div class="card-footer">
+        <div class="tech-badges">
+          @for (tech of getTechStackArray(project.techStack); track tech) {
+          <span class="tech-badge">{{ tech }}</span>
+          }
+        </div>
+
+        @if (project.architecture) {
+        <div class="arch-badge">
+          <mat-icon>schema</mat-icon>
+          <span>{{ project.architecture }}</span>
+        </div>
+        }
+      </div>
     </article>
-    @if (!last) {
-    <mat-divider />
-    } }
-  </mat-card>
+    }
+  </div>
 </section>

@@ -7,7 +7,7 @@
     "build": "ng build --configuration production --base-href /portfolio/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write \"src/**/*.{ts,html,css,scss}\""
+    "format": "prettier --write --list-different \"src/**/*.{ts,html,css,scss}\""
   },
   "private": true,
   "dependencies": {
