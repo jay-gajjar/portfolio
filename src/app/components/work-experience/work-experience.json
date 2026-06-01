@@ -1,0 +1,30 @@
+[
+  {
+    "company": "Softrefine Technology",
+    "duration": "Apr 2019 - Present",
+    "responsibilities": [
+      "Built web pages that are more user-interactive using librarie like Angular Material, ngx-bootstrap, PrimeNG etc.",
+      "Created a shared library using Typescript and Angular which can be used on multiple projects.",
+      "Created web applications using Angular PWA & Angular Server Side rendering(SSR).",
+      "Involved in designing the user experience interface UI/UX strategy, UI requirements, converting findings into UI designs."
+    ]
+  },
+  {
+    "company": "iCorethink Technologies",
+    "duration": "Nov 2018 - March 2019",
+    "responsibilities": [
+      "Created Admin panel with authentication using Angular component based structure.",
+      "Implemented page designs in standard-complaint dynamic Javascript, HTML and SCSS.",
+      "Implemented client side validations in registration forms, login and logout forms using Angular."
+    ]
+  },
+  {
+    "company": "WebAgilent",
+    "duration": "Jan 2018 - Oct 2018",
+    "responsibilities": [
+      "Created cross browser HTML and CSS designs.",
+      "Develop HTML designs templtes that supported responsive devices.",
+      "Worked on creating a CRUD application with Javascript, PHP as backend & MYSQL database."
+    ]
+  }
+]

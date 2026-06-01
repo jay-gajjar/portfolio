@@ -63,7 +63,7 @@ export class Contact {
     //Set Headers
     const httpOptions = {
       headers: new HttpHeaders({
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     };

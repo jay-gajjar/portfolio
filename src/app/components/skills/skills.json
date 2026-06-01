@@ -1,0 +1,77 @@
+[
+  {
+    "src": "images/skills/javascript.svg",
+    "alt": "Javascript",
+    "name": "Javascript"
+  },
+  {
+    "src": "images/skills/angular.svg",
+    "alt": "Angular",
+    "name": "Angular"
+  },
+  {
+    "src": "images/skills/api.svg",
+    "alt": "Image from https://commons.wikimedia.org/wiki/File:Cloud-API-Logo.svg",
+    "name": "REST API"
+  },
+  {
+    "src": "images/skills/git.svg",
+    "alt": "Git",
+    "name": "Git"
+  },
+  {
+    "src": "images/skills/typescript-original.svg",
+    "alt": "Typescript",
+    "name": "Typescript"
+  },
+  {
+    "src": "images/skills/antigravity.svg",
+    "alt": "Antigravity",
+    "name": "Antigravity"
+  },
+  {
+    "src": "images/skills/chatgpt.svg",
+    "alt": "ChatGPT",
+    "name": "ChatGPT"
+  },
+  {
+    "src": "images/skills/nodejs-original-wordmark.svg",
+    "alt": "Node JS",
+    "name": "Node JS"
+  },
+  {
+    "src": "images/skills/postman.svg",
+    "alt": "Postman",
+    "name": "Postman"
+  },
+  {
+    "src": "images/skills/html.svg",
+    "alt": "HTML",
+    "name": "HTML"
+  },
+  {
+    "src": "images/skills/jquery.svg",
+    "alt": "JQuery",
+    "name": "JQuery"
+  },
+  {
+    "src": "images/skills/vscode.svg",
+    "alt": "VS Code",
+    "name": "VS Code"
+  },
+  {
+    "src": "images/skills/css.svg",
+    "alt": "CSS",
+    "name": "CSS"
+  },
+  {
+    "src": "images/skills/sass.svg",
+    "alt": "SASS",
+    "name": "SASS"
+  },
+  {
+    "src": "images/skills/cursor.svg",
+    "alt": "Cursor",
+    "name": "Cursor"
+  }
+]

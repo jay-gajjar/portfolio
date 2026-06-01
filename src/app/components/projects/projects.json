@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Quiz Web Application",
+    "info": "A multilingual, secure learning software enabling teachers to create/manage quizzes, exams, and flashcards, while students engage in interactive learning sessions with real-time tracking.",
+    "contributions": [
+      "Built role-based dashboards and state management with Angular + NgRx.",
+      "Integrated WebSocket for synchronized exam timers.",
+      "Implemented ChatGPT-based evaluation for subjective answers.",
+      "Developed flashcards module for interactive learning.",
+      "Created E2E tests with Cypress, Jasmine, Karma, and Protractor."
+    ],
+    "techStack": "Angular, Angular Material, NgRx, Cypress, ChatGPT API, WebSockets"
+  },
+  {
+    "title": "Water Distribution System",
+    "info": "A geospatial monitoring platform for visualizing and analyzing water networks, including sensors, pipes, pumps, and valves, directly on an interactive map interface.",
+    "contributions": [
+      "Developed map-based visualization of water infrastructure using MapboxJS and KendoUI.",
+      "Implemented real-time monitoring of pressure and flow in pipes with sensor integration.",
+      "Built interactive dashboards for users to analyze network performance and detect potential issues.",
+      "Designed workflows to simulate and run analyses on water distribution networks, supporting predictive maintenance.",
+      "Architected the application using Nx Angular Monorepo for shared libraries, improved modularity, and better scalability."
+    ],
+    "techStack": "Angular, Nx Monorepo, KendoUI, MapboxJS",
+    "architecture": "Monorepo with shared libraries (Nx)"
+  },
+  {
+    "title": "Sport News Portal",
+    "info": "A sports news site that provides information about latest sports news, rumors of the soccer teams and signings of Valencia, Villarreal, Levante and the Valencian teams. To reduce website load time and improve google page insight score, It was created with Angular Server Side Rendering(SSR) implementation with help of Angular Universal.",
+    "contributions": [
+      "Implemented Angular Universal SSR for improved performance and SEO.",
+      "Optimized Core Web components and improve Page insight score.",
+      "Built reusable Angular components and caching for real-time news updates.",
+      "Lazy loaded assets to increase site load speed."
+    ],
+    "techStack": "Angular Server Side Rendering (SSR), Bootstrap, Nodejs"
+  }
+]

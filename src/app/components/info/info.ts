@@ -11,11 +11,10 @@ declare let gtag: any;
   styleUrl: './info.scss',
 })
 export class Info {
-
   downloadResume() {
     gtag('event', 'resume_download', {
       event_category: 'engagement',
-      event_label: 'resume pdf'
+      event_label: 'resume pdf',
     });
   }
 }
