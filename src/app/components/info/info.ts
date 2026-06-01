@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +7,7 @@ declare let gtag: any;
 
 @Component({
   selector: 'app-info',
-  imports: [MatButtonModule, NgOptimizedImage, MatIconModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './info.html',
   styleUrl: './info.scss',
 })
