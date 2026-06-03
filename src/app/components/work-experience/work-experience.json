@@ -3,11 +3,11 @@
     "company": "Softrefine Technology",
     "duration": "Apr 2019 - Present",
     "responsibilities": [
-      "Built web pages that are more user-interactive using librarie like Angular Material, ngx-bootstrap, PrimeNG etc.",
-      "Created a shared library using Typescript and Angular which can be used on multiple projects.",
+      "Built web pages that are more user-interactive using libraries like Angular Material, ngx-bootstrap, kendoUI etc.",
       "Created web applications using Angular PWA & Angular Server Side rendering(SSR).",
-      "Implemented state management solutions to handle complex application workflows and shared data.",
+      "Created a shared library using Typescript and Angular which can be used on multiple projects.",
       "Worked closely with backend developers to define API contracts and ensure seamless integration.",
+      "Implemented state management solutions to handle complex application workflows and shared data.",
       "Debugged and resolved UI and functionality issues across multiple browsers and devices.",
       "Participated in code reviews and followed coding standards to maintain high-quality code.",
       "Maintained and enhanced existing features based on client requirements and user feedback."
@@ -35,7 +35,7 @@
       "Developed cross-browser compatible web interfaces using HTML, CSS, and JavaScript.",
       "Built responsive website templates that provided a seamless experience across desktop, tablet, and mobile devices.",
       "Created and maintained CRUD-based web applications using JavaScript, PHP, and MySQL.",
-      "Converted UI/UX designs and wireframes into pixel-perfect, responsive web pages.",
+      "Converted UI/UX designs and mockups into pixel-perfect, responsive web pages.",
       "Implemented form validations and error handling to enhance data accuracy and usability.",
       "Worked with version control systems such as Git for code management."
     ]

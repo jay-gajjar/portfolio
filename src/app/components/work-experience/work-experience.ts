@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-
+import { Icon } from '../icon/icon';
 import workExperienceData from './work-experience.json';
 
 @Component({
   selector: 'app-work-experience',
-  imports: [MatCardModule, MatIconModule],
+  imports: [Icon],
   templateUrl: './work-experience.html',
   styleUrl: './work-experience.scss',
 })

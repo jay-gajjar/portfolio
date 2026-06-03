@@ -1,13 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../icon/icon';
 import { DOCUMENT } from '@angular/common';
 
 declare let gtag: any;
 
 @Component({
   selector: 'app-info',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [Icon],
   templateUrl: './info.html',
   styleUrl: './info.scss',
 })
@@ -15,10 +14,12 @@ export class Info {
   private document = inject(DOCUMENT);
 
   downloadResume() {
-    gtag('event', 'resume_download', {
-      event_category: 'engagement',
-      event_label: 'resume pdf',
-    });
+    if (typeof gtag === 'function') {
+      gtag('event', 'resume_download', {
+        event_category: 'engagement',
+        event_label: 'resume pdf',
+      });
+    }
   }
 
   scrollToContact() {

@@ -1,80 +1,94 @@
-.skillsContainer {
-  text-align: center;
-  padding: 40px !important;
-  background: var(--surface-card) !important;
-  backdrop-filter: blur(var(--glass-blur)) !important;
-  -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
-  border: 1px solid var(--border-card) !important;
-  box-shadow: var(--shadow-md) !important;
-  border-radius: 24px !important;
+.skillsSection {
+  width: 100%;
 
-  @media (max-width: 768px) {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
-  }
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 24px;
-
-  @media (max-width: 768px) {
-    padding: 10px;
-    gap: 16px;
-  }
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  }
-
-  .itemContainer {
+  .categoriesContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 16px;
-    border-radius: 16px;
-    background: var(--surface-card);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--border-card);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-    will-change: transform, box-shadow;
+    gap: 32px;
+    width: 100%;
+  }
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(var(--primary-accent-rgb), 0.15);
-      border-color: var(--primary-accent);
-      background: var(--surface-card-hover);
+  .category-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
-      img {
-        transform: scale(1.1) rotate(5deg);
-      }
-      p {
-        color: var(--primary-accent);
-      }
-    }
-
-    img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 12px;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    p {
-      margin: 0;
-      font-size: 0.85rem;
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-secondary);
-      transition: color 0.3s ease;
-      letter-spacing: 0.2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-card);
+    }
+  }
+
+  .skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+      gap: 8px;
+    }
+
+    .itemContainer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: var(--bg-surface);
+
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+
+      @media (max-width: 640px) {
+        padding: 8px 10px;
+        gap: 6px;
+      }
+
+      &:hover {
+        border-color: var(--text-muted);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+
+        .image-wrapper img {
+          transform: scale(1.1);
+        }
+
+        .skill-name {
+          color: var(--text-primary);
+        }
+      }
+
+      .image-wrapper {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+      }
+
+      .skill-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: color 0.2s ease;
+      }
     }
   }
 }

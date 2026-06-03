@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'app-about-me',
   templateUrl: './about-me.html',
-  imports: [MatCardModule, MatIconModule],
+  imports: [Icon],
   styleUrls: ['./about-me.scss'],
 })
 export class AboutMe {}

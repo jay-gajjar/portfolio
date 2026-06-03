@@ -7,22 +7,26 @@
   <div class="timeline-container">
     @for (experience of experiences; track experience.company) {
     <article class="timeline-item">
-      <!-- Dot on the timeline -->
-      <div class="timeline-dot-wrapper">
+      <!-- Left Column: Dates -->
+      <div class="timeline-left">
+        <span class="work-duration">{{ experience.duration }}</span>
+      </div>
+
+      <!-- Center Line & Dot -->
+      <div class="timeline-middle">
         <div class="timeline-dot"></div>
       </div>
 
-      <!-- Experience details in glass card -->
+      <!-- Right Column: Card details -->
       <div class="timeline-card">
         <div class="experience-header">
           <h3 class="work-company">{{ experience.company }}</h3>
-          <span class="work-duration">{{ experience.duration }}</span>
         </div>
 
         <ul class="responsibility-list">
           @for (responsibility of experience.responsibilities; track responsibility) {
           <li class="responsibility-item">
-            <mat-icon class="check-icon">verified</mat-icon>
+            <app-icon name="verified" [size]="14" class="check-icon" />
             <span class="responsibility-text">{{ responsibility }}</span>
           </li>
           }

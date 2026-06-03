@@ -1,45 +1,24 @@
-import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
-import { Component, DOCUMENT, inject, signal, ViewChild } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenav, MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Subscription } from 'rxjs';
-import { MatDividerModule } from '@angular/material/divider';
+import { Component, DOCUMENT, inject, signal, OnDestroy } from '@angular/core';
+import { Icon } from '../icon/icon';
 import { Sections } from '../sections/sections';
-import { MatTooltipModule } from '@angular/material/tooltip';
-
-const MOBILE_MEDIAQUERY = 'screen and (max-width: 1024px)';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [
-    MatSidenavModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatTooltipModule,
-    Sections,
-  ],
+  imports: [Icon, Sections],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar {
-  @ViewChild('content', { static: true }) content!: MatSidenavContent;
-  @ViewChild('sidenav', { static: true }) sidenav!: MatSidenav;
-  private breakpointObserver = inject(BreakpointObserver);
-  private readonly mediaMatcher = inject(MediaMatcher);
-  layoutChangesSubscription = Subscription.EMPTY;
+export class Sidebar implements OnDestroy {
+  private document = inject(DOCUMENT);
   activeSection = signal<string | null>(null);
   mode = signal<'light' | 'dark'>('light');
   isMobileScreen = signal<boolean>(false);
-  private document = inject(DOCUMENT);
+  isMobileOpen = signal<boolean>(false);
+
+  private mediaQueryListener: (e: MediaQueryListEvent) => void;
+  private mediaQuery: MediaQueryList;
 
   navItems = [
-    {
-      id: 'home',
-      icon: 'home',
-      label: 'Home',
-    },
     {
       id: 'about',
       icon: 'person',
@@ -53,27 +32,34 @@ export class Sidebar {
     {
       id: 'work',
       icon: 'work',
-      label: 'Work Experience',
+      label: 'Experience',
     },
     {
       id: 'projects-list',
-      icon: 'integration_instructionssdk',
+      icon: 'folder',
       label: 'Projects',
-    },
-    {
-      id: 'contact',
-      icon: 'alternate_email',
-      label: 'Contact',
     },
   ];
 
   constructor() {
     this.setDefaultTheme();
-    this.layoutChangesSubscription = this.breakpointObserver
-      .observe([MOBILE_MEDIAQUERY])
-      .subscribe((state) => {
-        this.isMobileScreen.set(!!state.breakpoints[MOBILE_MEDIAQUERY]);
-      });
+
+    // Set up media query for mobile viewport tracking (1024px breakpoint)
+    this.mediaQuery = window.matchMedia('(max-width: 1024px)');
+    this.isMobileScreen.set(this.mediaQuery.matches);
+
+    this.mediaQueryListener = (e: MediaQueryListEvent) => {
+      this.isMobileScreen.set(e.matches);
+      if (!e.matches) {
+        this.isMobileOpen.set(false);
+      }
+    };
+
+    this.mediaQuery.addEventListener('change', this.mediaQueryListener);
+  }
+
+  ngOnDestroy() {
+    this.mediaQuery.removeEventListener('change', this.mediaQueryListener);
   }
 
   setDefaultTheme() {
@@ -91,40 +77,50 @@ export class Sidebar {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    this.toggleSidenav();
-  }
-
-  toggleSidenav() {
+    this.activeSection.set(id);
     if (this.isMobileScreen()) {
-      this.sidenav.toggle();
-      return;
+      this.isMobileOpen.set(false);
     }
   }
 
+  toggleSidenav() {
+    this.isMobileOpen.set(!this.isMobileOpen());
+  }
+
   setObserver(observer: IntersectionObserver) {
-    // Observe all sections
     this.navItems.forEach((link) => {
       const sectionEl = this.document.getElementById(link.id);
       if (sectionEl) {
         observer.observe(sectionEl);
       }
     });
+
+    // Also observe the home section so we know when user scrolls to top
+    const homeEl = this.document.getElementById('home');
+    if (homeEl) {
+      observer.observe(homeEl);
+    }
+
+    // Also observe the contact section so we can detect active button highlights
+    const contactEl = this.document.getElementById('contact');
+    if (contactEl) {
+      observer.observe(contactEl);
+    }
   }
 
   toggleDark() {
-    this.mode.set(this.mode() === 'dark' ? 'light' : 'dark');
+    const newMode = this.mode() === 'dark' ? 'light' : 'dark';
+    this.mode.set(newMode);
     const body = this.document.querySelector('body');
     if (body) {
-      body.classList.toggle('theme-dark');
+      body.classList.toggle('theme-dark', newMode === 'dark');
     }
   }
 
-  getThemeColor() {
-    if (this.mediaMatcher.matchMedia('(prefers-color-scheme)').media !== 'not all') {
-      const isSystemDark = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)').matches;
-      return isSystemDark ? 'dark' : 'light';
-    } else {
-      return 'light';
-    }
+  getThemeColor(): 'light' | 'dark' {
+    const isSystemDark =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isSystemDark ? 'dark' : 'light';
   }
 }
+

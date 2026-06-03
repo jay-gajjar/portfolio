@@ -4,8 +4,12 @@
     <h1 class="hero-name"><span class="gradient-text">JAY</span> GAJJAR</h1>
 
     <div class="role-tag-container">
-      <span class="role-tag"><mat-icon>terminal</mat-icon> Front-End Developer</span>
-      <span class="role-tag"><mat-icon>layers</mat-icon> Angular</span>
+      <span class="role-tag"
+        ><app-icon name="terminal" [size]="16" class="tag-icon" /> Front-End Developer</span
+      >
+      <span class="role-tag"
+        ><app-icon name="layers" [size]="16" class="tag-icon" /> Angular Expert</span
+      >
     </div>
 
     <p class="smallBio">
@@ -17,20 +21,18 @@
 
     <div class="socialsResume">
       <a
-        class="resumeLink"
-        mat-flat-button
+        class="btn-primary"
         href="resume.pdf"
         alt="Jay's resume"
         target="_blank"
         (click)="downloadResume()"
         rel="noopener noreferrer"
       >
-        <mat-icon>download</mat-icon> Download Resume
+        <app-icon name="download" [size]="18" /> Download Resume
       </a>
 
       <a
-        class="contactBtn"
-        mat-stroked-button
+        class="btn-secondary"
         href="#contact"
         alt="Contact Jay"
         (click)="$event.preventDefault(); scrollToContact()"
@@ -42,7 +44,9 @@
 
   <div class="hero-highlight-grid">
     <div class="highlight-card">
-      <mat-icon class="card-icon">speed</mat-icon>
+      <div class="card-icon-wrapper">
+        <app-icon name="speed" [size]="24" class="card-icon" />
+      </div>
       <h3>Web Performance</h3>
       <p>
         Core Web Vitals optimization, SSR (Universal), PWA caching, and highly optimized bundle
@@ -51,7 +55,9 @@
     </div>
 
     <div class="highlight-card">
-      <mat-icon class="card-icon">schema</mat-icon>
+      <div class="card-icon-wrapper">
+        <app-icon name="schema" [size]="24" class="card-icon" />
+      </div>
       <h3>Scale & Architecture</h3>
       <p>
         Modular designs, scalable services, type-safe Angular systems, and reactive state control
@@ -60,7 +66,9 @@
     </div>
 
     <div class="highlight-card">
-      <mat-icon class="card-icon">settings_suggest</mat-icon>
+      <div class="card-icon-wrapper">
+        <app-icon name="settings" [size]="24" class="card-icon" />
+      </div>
       <h3>Reliable Logic</h3>
       <p>
         Clean component-driven structures, secure route guards, strict TypeScript, and modular
@@ -69,7 +77,9 @@
     </div>
 
     <div class="highlight-card">
-      <mat-icon class="card-icon">devices</mat-icon>
+      <div class="card-icon-wrapper">
+        <app-icon name="devices" [size]="24" class="card-icon" />
+      </div>
       <h3>A11y & UX Focus</h3>
       <p>
         Focused on creating responsive, user-friendly interfaces with clean layouts, smooth

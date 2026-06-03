@@ -4,14 +4,21 @@
     <h2>SKILLS</h2>
   </div>
 
-  <mat-card appearance="outlined" class="skillsContainer sectionContainer">
-    <div class="skillsGrid">
-      @for (skill of skills; track skill.name) {
-      <div class="itemContainer">
-        <img [src]="skill.src" [alt]="skill.alt" />
-        <p>{{ skill.name }}</p>
+  <div class="categoriesContainer">
+    @for (cat of skillCategories; track cat.title) {
+    <div class="category-block">
+      <h4 class="category-title">{{ cat.title }}</h4>
+      <div class="skillsGrid">
+        @for (skill of getSkillsByCategory(cat.skillNames); track skill.name) {
+        <div class="itemContainer">
+          <div class="image-wrapper">
+            <img [src]="skill.src" [alt]="skill.alt" />
+          </div>
+          <span class="skill-name">{{ skill.name }}</span>
+        </div>
+        }
       </div>
-      }
     </div>
-  </mat-card>
+    }
+  </div>
 </section>

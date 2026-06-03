@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-
+import { Icon } from '../icon/icon';
 import projectsData from './projects.json';
 
 @Component({
   selector: 'app-projects',
-  imports: [MatCardModule, MatDividerModule, MatIconModule],
+  imports: [Icon],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })

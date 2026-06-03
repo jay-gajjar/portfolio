@@ -16,115 +16,128 @@
 
         <div class="direct-contact-list">
           <a
-            href="mailto:gajjarjay.1711@gmail.com"
+            href="mailto:gajjarjay.1711&#64;gmail.com"
             class="direct-link"
             target="_blank"
             rel="noopener noreferrer"
           >
             <div class="contact-icon-box">
-              <mat-icon svgIcon="email"></mat-icon>
+              <app-icon name="email" [size]="18" />
             </div>
             <div class="contact-text-box">
               <span class="label">Email Me</span>
-              <span class="value">gajjarjay.1711@gmail.com</span>
+              <span class="value">gajjarjay.1711&#64;gmail.com</span>
             </div>
           </a>
-        </div>
 
-        <div class="socialsList">
           <a
             href="https://www.linkedin.com/in/gajjar-jay/"
+            class="direct-link"
             target="_blank"
-            class="social-btn"
-            matTooltip="Connect on LinkedIn"
             rel="noopener noreferrer"
           >
-            <mat-icon svgIcon="linkedIn"></mat-icon>
+            <div class="contact-icon-box">
+              <app-icon name="linkedIn" [size]="18" />
+            </div>
+            <div class="contact-text-box">
+              <span class="label">LinkedIn</span>
+              <span class="value">linkedin.com/in/gajjar-jay</span>
+            </div>
           </a>
 
           <a
             href="https://github.com/jay-gajjar"
+            class="direct-link"
             target="_blank"
-            class="social-btn"
-            matTooltip="Follow on GitHub"
             rel="noopener noreferrer"
           >
-            <mat-icon svgIcon="github"></mat-icon>
+            <div class="contact-icon-box">
+              <app-icon name="github" [size]="18" />
+            </div>
+            <div class="contact-text-box">
+              <span class="label">GitHub</span>
+              <span class="value">github.com/jay-gajjar</span>
+            </div>
           </a>
         </div>
       </div>
     </div>
 
     <!-- Right Column: Contact Form -->
-    <div class="contactFormContainer sectionContainer">
+    <div class="contactFormContainer">
       <h3 class="title">Send a Message</h3>
       <form id="contactForm" (ngSubmit)="sendEmail(emailForm.value)" [formGroup]="emailForm">
         <div class="form-row-2">
           <div class="form-field">
-            <mat-form-field appearance="outline" class="form-field-outline">
-              <mat-label>Your Name</mat-label>
-              <input type="text" id="nameInput" name="nameInput" matInput formControlName="name" />
-            </mat-form-field>
+            <label for="nameInput">Your Name</label>
+            <input
+              type="text"
+              id="nameInput"
+              placeholder="Jay Gajjar"
+              formControlName="name"
+              [class.error]="emailForm.get('name')?.touched && emailForm.get('name')?.invalid"
+            />
           </div>
 
           <div class="form-field">
-            <mat-form-field appearance="outline" class="form-field-outline">
-              <mat-label>Email Address</mat-label>
-              <input
-                type="email"
-                id="emailInput"
-                name="emailInput"
-                matInput
-                formControlName="email"
-              />
-            </mat-form-field>
+            <label for="emailInput">Email Address</label>
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="you@example.com"
+              formControlName="email"
+              [class.error]="emailForm.get('email')?.touched && emailForm.get('email')?.invalid"
+            />
           </div>
         </div>
 
         <div class="form-field full-width">
-          <mat-form-field appearance="outline" class="form-field-outline">
-            <mat-label>Subject</mat-label>
-            <input
-              type="text"
-              id="subjectInput"
-              name="subjectInput"
-              matInput
-              formControlName="subject"
-            />
-          </mat-form-field>
+          <label for="subjectInput">Subject</label>
+          <input
+            type="text"
+            id="subjectInput"
+            placeholder="Collaboration proposal"
+            formControlName="subject"
+            [class.error]="emailForm.get('subject')?.touched && emailForm.get('subject')?.invalid"
+          />
         </div>
 
         <div class="form-field full-width">
-          <mat-form-field appearance="outline" class="form-field-outline">
-            <mat-label>Your Message</mat-label>
-            <textarea
-              id="messageInput"
-              name="messageInput"
-              matInput
-              rows="4"
-              formControlName="message"
-            ></textarea>
-          </mat-form-field>
+          <label for="messageInput">Your Message</label>
+          <textarea
+            id="messageInput"
+            rows="5"
+            placeholder="Tell me about your project..."
+            formControlName="message"
+            [class.error]="emailForm.get('message')?.touched && emailForm.get('message')?.invalid"
+          ></textarea>
         </div>
       </form>
 
       <div class="form-actions">
         <button
-          color="primary"
-          mat-flat-button
           [disabled]="isLoading() || emailForm.invalid"
           type="submit"
-          class="formSend"
+          class="btn-primary formSend"
           form="contactForm"
         >
           @if (isLoading()) {
           <span class="btn-spinner"></span> Sending... } @else {
-          <span style="display: inline-flex; align-items: center; gap: 8px">
-            <mat-icon>send</mat-icon> Send Message
-          </span>
+          <app-icon name="send" [size]="16" />
+          <span>Send Message</span>
           }
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Custom Floating Toast Notification -->
+  @if (showSnackBar()) {
+  <div class="custom-toast animate-toast">
+    <span class="toast-message">{{ message() }}</span>
+    <button class="toast-close" (click)="showSnackBar.set(false)">
+      <app-icon name="close" [size]="14" />
+    </button>
+  </div>
+  }
 </section>

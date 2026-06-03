@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
   Validators,
@@ -7,31 +7,16 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'app-contact',
-  imports: [
-    MatCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, Icon],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
 export class Contact {
   private httpClient = inject(HttpClient);
-  private _snackBar = inject(MatSnackBar);
   private fb = inject(FormBuilder);
   secretKey = signal('xrgwzgwe');
   isLoading = signal(false);
@@ -54,38 +39,43 @@ export class Contact {
       return;
     }
     if (this.emailForm.invalid) {
-      this.displaySnackBar('Please fill required fields & Valid details...');
+      this.displaySnackBar('Please fill required fields with valid details.');
       return;
     }
     this.isLoading.set(true);
-    //Set the url with your secretKey from formspree.io
     const url = 'https://formspree.io/f/' + this.secretKey();
-    //Set Headers
     const httpOptions = {
       headers: new HttpHeaders({
         Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
       }),
     };
-    const data = `name=${formData.name}&email=${formData.email}&message=${formData.message}`;
-    let errorMessage = '';
+    const data = `name=${formData.name}&email=${formData.email}&subject=${formData.subject}&message=${formData.message}`;
+
     this.httpClient.post(url, data, httpOptions).subscribe({
       next: () => {
         this.emailForm.reset();
+        this.emailForm.markAsUntouched();
         this.isLoading.set(false);
         this.displaySnackBar('Thank you for filling out your information!');
       },
       error: (error) => {
         this.isLoading.set(false);
-        errorMessage = error.message;
-        console.log('error!', errorMessage);
+        this.displaySnackBar('Failed to send message: ' + (error.message || 'Error occurred.'));
+        console.error('Email send error:', error);
       },
     });
   }
 
   displaySnackBar(message: string) {
-    this._snackBar.open(message, 'Close', {
-      duration: 3000,
-    });
+    if (this.snackbarTimeOut()) {
+      clearTimeout(this.snackbarTimeOut());
+    }
+    this.message.set(message);
+    this.showSnackBar.set(true);
+    const timeout = setTimeout(() => {
+      this.showSnackBar.set(false);
+    }, 4000);
+    this.snackbarTimeOut.set(timeout);
   }
 }

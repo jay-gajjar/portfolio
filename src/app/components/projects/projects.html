@@ -4,43 +4,132 @@
     <h2>PROJECTS <sub>that i worked on</sub></h2>
   </div>
 
-  <div class="projects-grid">
-    @for (project of projects; track project.title) {
-    <article class="project-card">
-      <div class="card-header">
-        <div class="title-wrap">
-          <mat-icon class="folder-icon">folder_open</mat-icon>
-          <h3 class="title">{{ project.title }}</h3>
+  <div class="projects-list-container">
+    @for (project of projects; track project.title; let idx = $index) {
+    <article class="project-article" [class.alternate]="idx % 2 === 1">
+      <!-- Visual Column (CSS-based Mockups) -->
+      <div class="project-visual-column">
+        <div class="visual-mockup-frame">
+          <div class="mockup-header">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="mockup-title">{{ project.title }}</span>
+          </div>
+
+          <div class="mockup-content">
+            @if (project.title.includes('Quiz')) {
+            <div class="quiz-mock">
+              <div class="quiz-header">
+                <span>Question 4 of 10</span>
+                <span class="timer">08:45</span>
+              </div>
+              <div class="quiz-question">
+                How does Angular signals track dependencies reactively?
+              </div>
+              <div class="quiz-options">
+                <div class="option active">
+                  <span class="radio"></span>
+                  <span>Using dynamic dependency tracking</span>
+                </div>
+                <div class="option">
+                  <span class="radio"></span>
+                  <span>Via zone-based change detection</span>
+                </div>
+                <div class="option">
+                  <span class="radio"></span>
+                  <span>Manual subscription triggers</span>
+                </div>
+              </div>
+            </div>
+            } @else if (project.title.includes('Water')) {
+            <div class="map-mock">
+              <div class="map-grid">
+                <!-- Sensor Nodes -->
+                <div class="map-node active" style="top: 25%; left: 20%">
+                  <span class="ping"></span>
+                </div>
+                <div
+                  class="map-line"
+                  style="top: 28%; left: 24%; width: 45px; transform: rotate(15deg)"
+                ></div>
+
+                <div class="map-node warning" style="top: 40%; left: 50%">
+                  <span class="ping"></span>
+                </div>
+                <div
+                  class="map-line"
+                  style="top: 48%; left: 52%; width: 35px; transform: rotate(45deg)"
+                ></div>
+
+                <div class="map-node" style="top: 65%; left: 65%"></div>
+                <div
+                  class="map-line"
+                  style="top: 50%; left: 22%; width: 75px; transform: rotate(65deg)"
+                ></div>
+              </div>
+
+              <div class="map-legend">
+                <span>Active Sensors: 124</span>
+                <span class="err">Pressure Alert: Node #4B</span>
+              </div>
+            </div>
+            } @else if (project.title.includes('Sport')) {
+            <div class="news-mock">
+              <div class="news-hero">
+                <span class="badge">BREAKING NEWS</span>
+                <div class="title">Valencia CF Secures New Top-Tier Midfielder Signings</div>
+              </div>
+              <div class="news-grid">
+                <div class="news-item">
+                  <span class="date">Today</span>
+                  <p>Levante UD Match Highlights</p>
+                </div>
+                <div class="news-item">
+                  <span class="date">Yesterday</span>
+                  <p>Villarreal Transfer Rumors</p>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
         </div>
       </div>
 
-      <p class="info">{{ project.info }}</p>
-
-      <div class="details-section">
-        <h4 class="details-title">Key Contributions</h4>
-        <ul class="contributions-list">
-          @for (contribution of project.contributions; track contribution) {
-          <li class="contribution-item">
-            <mat-icon class="bullet-icon">arrow_forward_ios</mat-icon>
-            <span class="contribution-text">{{ contribution }}</span>
-          </li>
+      <!-- Details Column -->
+      <div class="project-details-column">
+        <div class="header-row">
+          <h3 class="project-title">{{ project.title }}</h3>
+          @if (project.architecture) {
+          <span class="arch-badge">
+            <app-icon name="schema" [size]="12" />
+            {{ project.architecture }}
+          </span>
           }
-        </ul>
-      </div>
+        </div>
 
-      <div class="card-footer">
-        <div class="tech-badges">
+        <div class="info-block">
+          <h4 class="meta-label">Problem Solved & Product Goal</h4>
+          <p class="info-text">{{ project.info }}</p>
+        </div>
+
+        <div class="details-section">
+          <h4 class="meta-label">Key Contributions</h4>
+          <ul class="contributions-list">
+            @for (contribution of project.contributions; track contribution) {
+            <li class="contribution-item">
+              <app-icon name="arrowRight" [size]="14" class="bullet-icon" />
+              <span class="contribution-text">{{ contribution }}</span>
+            </li>
+            }
+          </ul>
+        </div>
+
+        <div class="tech-badges-row">
           @for (tech of getTechStackArray(project.techStack); track tech) {
           <span class="tech-badge">{{ tech }}</span>
           }
         </div>
-
-        @if (project.architecture) {
-        <div class="arch-badge">
-          <mat-icon>schema</mat-icon>
-          <span>{{ project.architecture }}</span>
-        </div>
-        }
       </div>
     </article>
     }
